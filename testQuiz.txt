@@ -1,6 +1,0 @@
-Question 0: What is your name?
-Lee :: Sean :: Kealan :: Dylan
-Question 1: What is your quest?
-Drink :: Smoke :: Drugs :: Lolipop song
-Question 2: What is your favorite colour?
-Blue :: Green :: Red :: Purple
