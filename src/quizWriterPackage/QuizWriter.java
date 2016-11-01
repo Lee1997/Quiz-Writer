@@ -26,8 +26,12 @@ import javax.swing.JTextField;
 public class QuizWriter implements ActionListener{
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public JFrame mainFrame, setupFrame;
 	public OpeningFrame openingFrame;
+=======
+	public JFrame openingFrame, mainFrame, setupFrame;
+>>>>>>> 564fe7b7d7d84d17a0ee5b6260b191e44cd71dcb
 =======
 	public JFrame openingFrame, mainFrame, setupFrame;
 >>>>>>> 564fe7b7d7d84d17a0ee5b6260b191e44cd71dcb
@@ -42,6 +46,7 @@ public class QuizWriter implements ActionListener{
 	
 	public QuizWriter(){
 <<<<<<< HEAD
+<<<<<<< HEAD
 		openingFrame = new OpeningFrame();		
 	}
 	
@@ -51,6 +56,8 @@ public class QuizWriter implements ActionListener{
 		
 		if("Save as".equals(e.getActionCommand())&& changed == false){
 =======
+=======
+>>>>>>> 564fe7b7d7d84d17a0ee5b6260b191e44cd71dcb
 		OpeningFrame();		
 	}
 	
@@ -214,6 +221,9 @@ public class QuizWriter implements ActionListener{
 			mainFrame.dispose();
 		}
 		else if("Save as".equals(e.getActionCommand())&& changed == false){
+<<<<<<< HEAD
+>>>>>>> 564fe7b7d7d84d17a0ee5b6260b191e44cd71dcb
+=======
 >>>>>>> 564fe7b7d7d84d17a0ee5b6260b191e44cd71dcb
 			JFileChooser chooser = new JFileChooser("./");
 			
