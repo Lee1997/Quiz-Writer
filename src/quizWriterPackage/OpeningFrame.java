@@ -10,11 +10,13 @@ import javax.swing.JLabel;
 
 public class OpeningFrame extends JFrame implements ActionListener{
 	
+	private static final long serialVersionUID = 7371273143243284052L; //Ignore
 	public JButton newQuizButton;
 	public SetupFrame setupFrame;
 	
+	//Default Constructor
 	public OpeningFrame(){
-		
+		//JFrame setup stuff. Can reference this because OpeningFrame extends JFrame
 		this.setTitle("Lee's Quiz Maker");
 		this.setSize(300, 200);
 		this.setVisible(true);
@@ -28,23 +30,24 @@ public class OpeningFrame extends JFrame implements ActionListener{
 		this.add(openingQuestion);
 		
 		newQuizButton = new JButton("New Quiz");
-		newQuizButton.setActionCommand("run setup");
+		newQuizButton.setActionCommand("run setup"); //Essentially adds a tag so the actionListener will know which object it heard from
 		this.add(newQuizButton);
 		
 		JButton loadQuizButton = new JButton("Load Quiz");
 		this.add(loadQuizButton);
 		
+		//Will link up to the ActionListener which is implemented on line 11, will trigger actionPerformed when clicked as it will be listened to
 		newQuizButton.addActionListener(this);
 		loadQuizButton.addActionListener(this);
 	}
-
+	//A requirement of the abstract ActionListener interface
 	public void actionPerformed(ActionEvent e) {
-		
-		if(e.getActionCommand().equals("run setup"))
+		//Transfers from OpeningFrame to a new SetupFrame object
+		if(e.getActionCommand().equals("run setup")){
 			this.setVisible(false);
 			setupFrame = new SetupFrame();
 			this.dispose();
-		
+		}
 	}
 	
 	

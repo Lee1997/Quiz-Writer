@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 public class SetupFrame extends JFrame implements ActionListener{
 	
+	private static final long serialVersionUID = -6607302741134109340L; //Ignore
 	public JTextField quizTopicField, questionQuantityField, qPerRoundField;
 	public JButton submitSettings;
 	public String quizTopic;
@@ -18,6 +19,7 @@ public class SetupFrame extends JFrame implements ActionListener{
 	public MainFrame mainFrame;
 	
 	public SetupFrame(){
+		//JFrame setup stuff
 		this.setTitle("Lee's Quiz Writer");
 		this.setSize(300, 200);
 		this.setResizable(false);

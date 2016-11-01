@@ -22,11 +22,13 @@ import javax.swing.JTextField;
 
 public class MainFrame extends JFrame implements ActionListener{
 	
+	private static final long serialVersionUID = 3733221592337845369L; //Ignore
 	public String quizTopic;
 	public int quizLength, qPerRound;
-	
 	public JTextField[] questionText;
+	public SetupFrame sf;
 	
+	//General Constructor takes in the values from SetupFrame
 	public MainFrame(String topic, int length, int qpr){
 		this.quizTopic = topic;
 		this.quizLength = length;
@@ -35,6 +37,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	}
 	
 	public void initFrame() {
+		//JFrame setup stuff
 		this.setTitle("Lee's Quiz Writer");
 		this.setSize(800, 800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,6 +45,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		this.setVisible(true);
 		this.setResizable(false);
 		
+		//Adding the File JMenu similar to the one in the top left of your screen right now for your IDE
 		JMenuBar menuBar = new JMenuBar();
 		JMenu file = new JMenu("File");
 		JMenuItem newQuiz = new JMenuItem("New");
@@ -50,6 +54,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		JMenuItem saveAs = new JMenuItem("Save as");
 		JMenuItem exit = new JMenuItem("Exit");
 		
+		//Adds actionListener to all the JMenuItems with a for each loop
 		JMenuItem[] throwArray = {open, save, saveAs, exit, newQuiz};
 		for(JMenuItem item: throwArray){
 			if(item == newQuiz)
@@ -60,20 +65,24 @@ public class MainFrame extends JFrame implements ActionListener{
 		menuBar.add(file);
 		this.setJMenuBar(menuBar);
 		
+		//Adds a panel to place on the JFrame(subject to change in future versions)
 		JPanel totalGUI = new JPanel();
 		
 		totalGUI.setLayout(new GridLayout(quizLength+1, 2));
 		
+		//Set up of quiz title display
 		JLabel quizTitle = new JLabel(quizTopic + " Quiz!");
 		quizTitle.setFont(new Font("Serif", Font.BOLD, 30));
 		quizTitle.setHorizontalAlignment(0);
 		totalGUI.add(quizTitle);
 		
+		//Setup of submit button
 		JButton submitButton = new JButton("Submit!");
 		totalGUI.add(submitButton);
 		JLabel[] questionLabel = new JLabel[quizLength];
 		questionText = new JTextField[quizLength];
 		
+		//Displays the Question number and JtextBox
 		for(int i = 0; i < quizLength; i++){
 			questionLabel[i] = new JLabel("Question " + (i+1) + ":");
 			questionLabel[i].setHorizontalAlignment(JLabel.CENTER);
@@ -83,7 +92,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		}
 		
 		 
-		
+		//allows the pane to be scrollable, which is essential because most of the quizzes are long enough that they go off the screen
 		JScrollPane scrollPane = new JScrollPane(totalGUI, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		
@@ -92,13 +101,13 @@ public class MainFrame extends JFrame implements ActionListener{
 		this.add(scrollPane);
 		
 	}
-
+	
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("Exit"))
+		if(e.getActionCommand().equals("Exit"))//Exits the program
 			System.exit(0);
-		else if(e.getActionCommand().equals("New")){
+		else if(e.getActionCommand().equals("New")){//creates a new setupFrame and removes previous mainframe
 			this.setVisible(false);
-			SetupFrame sf = new SetupFrame();
+			sf = new SetupFrame();
 			this.dispose();
 		}
 		else if(e.getActionCommand().equals("Save as")){
@@ -107,7 +116,7 @@ public class MainFrame extends JFrame implements ActionListener{
 			
 		
 	}
-	public void saveAs(){
+	public void saveAs(){//Will return to comment this when I have it full finished
 		JFileChooser chooser = new JFileChooser("./");
 		
 		int returned = chooser.showSaveDialog(this);
@@ -118,7 +127,6 @@ public class MainFrame extends JFrame implements ActionListener{
 			try{
 				BufferedWriter bw = new BufferedWriter(new FileWriter(path, true));
 				String[] s = new String[quizLength];
-				FileWriter fw = null;
 				for(int i = 0; i < quizLength; i++){
 					s[i] = questionText[i].getText();
 					bw.write("Question " + i + ": " + s[i]);
